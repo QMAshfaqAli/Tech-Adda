@@ -19,6 +19,14 @@ class CommentRepository
                     ->where('talk_id = ', $talkId)
                     ->many();
     }
+    
+    public function getCommentsByEvent($eventId)
+    {
+        return $this->db->from('comments')
+                    ->join('users', array('comments.user_id' => 'users.user_id'))
+                    ->where('event_id = ', $eventId)
+                    ->many();
+    }
 
     public function create($data)
     {
